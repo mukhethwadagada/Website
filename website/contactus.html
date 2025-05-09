@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HMukhethwa</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        header {
+            background-color: #1ba4a4;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+        }
+        .contact-section {
+            background: white;
+            padding: 20px;
+            width: 50%;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #1ba4a4;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #148c8c;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Her Tech Journey</h1>
+        <a href="homepage.html">Home Page</a>
+            <a href="aboutus.html">About me</a>
+            <a href="Mywork.html">My work</a>
+            <a href="Get Involved.html">Get Involved</a>
+            <a href="Contactus.html">Contact us</a>
+            
+    </header>
+
+    <section class="contact-section">
+        <h2>Get in Touch</h2>
+        <p>If you have any questions or would like to connect, please fill out the form below.</p>
+
+        <form id="contact-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+
+            <button type="button" onclick="sendEmail()">Send Message</button>
+        </form>
+    </section>
+
+    <script type="text/javascript">
+        emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS Public Key
+
+        function sendEmail() {
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var message = document.getElementById("message").value;
+
+            var templateParams = {
+                name: name,
+                email: email,
+                message: message
+            };
+
+            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", templateParams)
+                .then(function(response) {
+                    alert("Message sent successfully!");
+                    document.getElementById("contact-form").reset();
+                }, function(error) {
+                    alert("Failed to send message. Please try again later.");
+                    console.error("EmailJS Error:", error);
+                });
+        }
+    </script>
+
+</body>
+</html>
